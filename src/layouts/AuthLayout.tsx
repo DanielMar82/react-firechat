@@ -14,18 +14,11 @@ const AuthLayout = () => {
 
   return (
     <>
-      <main>
-        <header>
-          <h1>Header auth</h1>
-        </header>
-        <div>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+        <div className="max-w-md w-full">
           <Outlet />
         </div>
-
-        <footer>
-          <h1>Footer auth</h1>
-        </footer>
-      </main>
+      </div>
     </>
   );
 };

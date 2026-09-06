@@ -1,8 +1,10 @@
-import { useAuth, useUser } from "reactfire";
+import { Button } from "@/components/ui/button";
+import { useAuthActions } from "@/hooks/useAuthActions";
+import { useUser } from "reactfire";
 
 const DashboardPage = () => {
-  const auth = useAuth();
   const { data: user } = useUser();
+  const { logout } = useAuthActions();
 
   return (
     <>
@@ -10,7 +12,9 @@ const DashboardPage = () => {
       <p>Bienvenido, {user?.displayName || "Guest"}!</p>
       <p>Email: {user?.email || "Not provided"}</p>
       <p>User ID: {user?.uid || "Not provided"}</p>
-      <button onClick={() => auth.signOut()}>Sign out</button>
+      <Button variant={"destructive"} onClick={logout}>
+        logout
+      </Button>
     </>
   );
 };
