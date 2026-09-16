@@ -58,6 +58,8 @@ export const useAuthActions = () => {
         await updateProfile(currentUser.user, {
           displayName: data.displayName,
         });
+
+        await currentUser.user.reload();
       }
 
       return {

@@ -35,7 +35,7 @@ const CardFooterAuth = ({ type, loading }: Props) => {
           variant={"outline"}
         >
           <Mail className="mr-2" />
-          {isLogin ? "Login" : "Register"} con Google
+          {isLogin ? "Iniciar sesión" : "Registrarse"} con Google
         </Button>
         <p className="text-center text-sm text-muted-foreground">
           {isLogin
@@ -43,7 +43,7 @@ const CardFooterAuth = ({ type, loading }: Props) => {
             : "¿Ya tienes una cuenta? "}
           <Link to={isLogin ? "/register" : "/login"}>
             <Button variant="link" className="p-0 h-auto font-normal">
-              {isLogin ? "Register" : "Sign in"}
+              {isLogin ? "Registrarse" : "Iniciar sesión"}
             </Button>
           </Link>
         </p>

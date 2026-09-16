@@ -11,6 +11,7 @@ const DashboardPage = () => {
       <h2>Dashboard page</h2>
       <p>Bienvenido, {user?.displayName || "Guest"}!</p>
       <p>Email: {user?.email || "Not provided"}</p>
+      <p>URL: {user?.photoURL || "Not provided"}</p>
       <p>User ID: {user?.uid || "Not provided"}</p>
       <Button variant={"destructive"} onClick={logout}>
         logout
