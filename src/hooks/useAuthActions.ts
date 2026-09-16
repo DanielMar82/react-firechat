@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { useAuth } from "reactfire";
+import { useUserActions } from "./useUserActions";
 
 interface AuthActionsResponse {
   success: boolean;
@@ -18,6 +19,8 @@ interface AuthActionsResponse {
 export const useAuthActions = () => {
   const [loading, setLoading] = useState(false);
   const auth = useAuth();
+
+  const { createOrUpdateUser } = useUserActions();
 
   const login = async (data: {
     email: string;
@@ -59,6 +62,9 @@ export const useAuthActions = () => {
           displayName: data.displayName,
         });
 
+        //Crea y guarda el usuario en FireStore
+        await createOrUpdateUser(currentUser.user);
+
         await currentUser.user.reload();
       }
 
@@ -81,7 +87,10 @@ export const useAuthActions = () => {
     setLoading(true);
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const data = await signInWithPopup(auth, provider);
+
+      //Crea y guarda el usuario en FireStore
+      await createOrUpdateUser(data.user);
 
       return {
         success: true,
